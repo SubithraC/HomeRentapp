@@ -18,7 +18,7 @@ const registerController = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     req.body.password = hashedPassword;
-
+    
     if (req.body.type === "Owner") {
       granted = "ungranted";
       const newUser = new userSchema({ ...req.body, granted });
